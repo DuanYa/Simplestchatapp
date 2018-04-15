@@ -1,5 +1,6 @@
 package ui.main;
 
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -35,6 +36,7 @@ public class MainPanel extends JPanel implements MouseListener, ActionListener {
 		this.add(label);
 		addf.setBounds(250, 70, 100, 20);
 		this.add(addf);
+		addf.addActionListener(this);
 
 		jlist.addMouseListener(this);
 
@@ -101,7 +103,17 @@ public class MainPanel extends JPanel implements MouseListener, ActionListener {
 		// TODO Auto-generated method stub
 
 		if (e.getSource() == addf) {
-			JOptionPane.showInputDialog(addf, "aaa");
+			try {
+				new client.MyClient().addFriendRequest(JOptionPane.showInputDialog("请输入好友用户名："));
+			} catch (HeadlessException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			;
 		}
 
 	}

@@ -41,7 +41,7 @@ public class DataManage {
 			pos--;
 			rf.seek(pos);
 			if (rf.readByte() == '\n') {
-				history.add(rf.readLine());
+				history.add(new String(rf.readLine().getBytes("GBK"), "UTF-8"));
 				count++;
 			}
 			if (count == 15) {
@@ -77,7 +77,7 @@ public class DataManage {
 		}
 		RandomAccessFile rf = new RandomAccessFile(file, "rw");
 		rf.seek(rf.length());
-		rf.writeChars(text);
+		rf.writeChars(new String(text.getBytes("GBK"), "UTF-8"));
 
 	}
 

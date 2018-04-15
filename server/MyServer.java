@@ -8,6 +8,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import javax.swing.JOptionPane;
+
 public class MyServer {
 
 	ServerSocket ssc;
@@ -32,10 +34,28 @@ public class MyServer {
 				String info = null;
 				while ((info = br.readLine()) != null) {
 
-					String[] msg0 = info.split("&&##@@separator@@##&&");
-					start.Main.datamanage.addLocalHistory(msg0[0], msg0[1], false);
-					if (start.Main.dialogframe != null) {
-						start.Main.dialogframe.init(msg0[0]);
+					String[] msg0 = info.split(start.Main.SEPARATOR);
+
+					if (msg0[0] == "0") {
+
+						start.Main.datamanage.addLocalHistory(msg0[1], new String(msg0[2].getBytes("GBK"), "UTF-8"),
+								false);
+
+						if (start.Main.dialogframe != null) {
+							start.Main.dialogframe.init(msg0[1]);
+
+						}
+					} else if (msg0[0] == "1") {
+						int a = JOptionPane.showConfirmDialog(start.Main.mainframe.getComponent(0),
+								msg0[1] + "申请添加您为好友，同意？");
+						switch (a) {
+						case JOptionPane.YES_OPTION:
+							start.Main.sql.agreeFriendRequest(msg0[1]);
+							break;
+
+						default:
+							break;
+						}
 					}
 
 				}

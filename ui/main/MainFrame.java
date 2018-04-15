@@ -1,12 +1,14 @@
 package ui.main;
 
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements WindowListener {
 
 	int width = 400;
 	int height = 800;
@@ -20,6 +22,7 @@ public class MainFrame extends JFrame {
 		this.setVisible(true);
 		this.setSize(width, height);
 		this.setLocation(x, y);
+		this.addWindowListener(this);
 
 		Tr1 tr1 = new Tr1();
 		tr1.start();
@@ -39,6 +42,60 @@ public class MainFrame extends JFrame {
 			}
 
 		}
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+
+		try {
+			start.Main.sql.setOutline(start.Main.myUserName);
+
+			System.out.println("aaa");
+
+			System.exit(-1);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

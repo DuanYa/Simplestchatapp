@@ -157,4 +157,10 @@ public class SqlManager {
 
 	}
 
+	public void agreeFriendRequest(String name) {
+
+		System.out.println(name);
+		// TODO
+	}
+
 }

@@ -87,12 +87,14 @@ public class DialogFrame extends JFrame implements ActionListener {
 			myText.setText("");
 
 			System.out.println(start.Main.dialogframe.getTitle());
-
+			// TODO
 		} else if (e.getSource() == bt2) {
 
 			try {
+
 				mc.sendMessage(start.Main.sql.getFriendAddress(this.getTitle()), myText.getText());
-				start.Main.datamanage.addLocalHistory(this.getTitle(), myText.getText(), true);
+				start.Main.datamanage.addLocalHistory(this.getTitle(),
+						new String(myText.getText().getBytes("GBK"), "UTF-8"), true);
 				initHistory();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block

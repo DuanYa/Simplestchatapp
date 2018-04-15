@@ -22,6 +22,7 @@ public class Main {
 	public static String myUserName = null;
 	public static LogFrame logframe;
 	public static DataManage datamanage;
+	public static final String SEPARATOR = "&&##@@separator@@##&&";
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException {
 
